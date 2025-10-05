@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fafafa; /* softer white for readability */
+  --foreground: #0f172a; /* slate-900 */
+  --muted: #f5f5f4; /* warm gray */
+  --card: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Force light palette for readability */
+    --background: #ffffff;
+    --foreground: #0f172a;
+    --muted: #f5f5f4;
+    --card: #ffffff;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: var(--font-display), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  letter-spacing: -0.01em;
+}
+
+p { color: #334155; /* slate-700 */ }
+
+/* Component layer */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors bg-black text-white hover:bg-black/90 disabled:opacity-50 disabled:pointer-events-none shadow-sm;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors bg-white text-gray-800 border border-neutral-300 hover:bg-neutral-50;
+  }
+
+  .card {
+    @apply rounded-2xl border border-neutral-300 bg-white p-6 shadow-sm;
+    background: var(--card);
+  }
+
+  .input, .select, .textarea {
+    @apply w-full border border-neutral-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-neutral-300 text-slate-900 placeholder:text-slate-500;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium;
+  }
+}
